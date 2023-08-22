@@ -214,7 +214,7 @@ Esse endpoint cria uma conta bancária.
 ``` 
  `PUT` `/contas/:numeroConta/usuario`
 ``` 
-Esse endpoint deverá atualizar apenas os dados do usuário de uma conta bancária.
+Esse endpoint atualiza apenas os dados do usuário de uma conta bancária.
 
 -   ***Requisição*** - O corpo (body) deverá possuir um objeto com todas as seguintes propriedades (respeitando estes nomes):
 
