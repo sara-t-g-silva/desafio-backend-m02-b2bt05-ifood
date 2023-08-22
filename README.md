@@ -1,7 +1,7 @@
 ![](https://i.imgur.com/xG74tOh.png)
 
 # Desafio Módulo 2 - Back-end
-![Alt text](image-1.png)
+![Alt text](img/image-1.png)
 
  ## Banco  RestFul API 
 
@@ -119,7 +119,7 @@ npm run dev
 ``` 
 
 
-Esse endpoint deverá listar todas as contas bancárias existentes.
+Esse endpoint lista todas as contas bancárias existentes.
 
 -   ***Requisição*** - query params (respeitando este nome)
     -   senha_banco
@@ -167,10 +167,11 @@ Esse endpoint deverá listar todas as contas bancárias existentes.
 }
 ```
 
-- **Criar conta bancária**
+### ☑️  **Criar conta bancária**
 ``` 
  `POST` `/contas`
  ``` 
+Esse endpoint cria uma conta bancária.
 
 -   ***Requisição*** - O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
