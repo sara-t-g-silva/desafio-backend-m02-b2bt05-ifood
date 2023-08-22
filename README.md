@@ -4,6 +4,9 @@
 ![Alt text](img/image-1.png)
 
  ## Banco  RestFul API 
+[![Languages used](https://img.shields.io/github/languages/count/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood?style=flat-square)]
+![GitHub repo size](https://img.shields.io/github/repo-size/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood)
+
 
 
 
