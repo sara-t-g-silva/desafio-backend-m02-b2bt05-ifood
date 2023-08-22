@@ -194,6 +194,7 @@ function mostrarSaldo (request,response){
 }
 
 function mostrarExtrato (request, response){
+    
     const {numero_conta} = request.query;
     const depositosConta = banco.depositos.filter(function(numeroConta){
         return numeroConta.numero_conta == numero_conta;
