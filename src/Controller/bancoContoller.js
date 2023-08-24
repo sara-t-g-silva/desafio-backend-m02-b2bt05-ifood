@@ -2,6 +2,7 @@ const banco = require('../data/bancodedados');
 
 let numero = 1;
 let saldo = 0;
+let transferenciasPush = 0;
 
 function listarContas(request, response) {
     response.status(200).json(banco);
@@ -107,14 +108,16 @@ function depositar(request, response){
         numero_conta,
         valor
     }
+  
 
-    
     contaEncontrada.saldo += valor;
 
     banco.depositos.push(registroDeposito);
 
     response.status(204).json();
 }
+    
+
 
 function sacar (request, response){
     const {numero_conta, valor, senha_usuario} = request.body;
@@ -140,6 +143,20 @@ function sacar (request, response){
     banco.saques.push(registroSaque);
 
     response.status(204).json();
+}
+
+//essa função tem a obrigação de realizar o histórico de depósitos na conta de destino, após transfrência
+function registrarDepositoContaDestino(contaDestino, valor){
+    const registroDeposito = {
+        data: new Date().toLocaleString(),
+        numero_conta: contaDestino,
+        valor
+    }
+  
+    contaDestino.saldo += valor;
+
+    banco.transferencias[transferenciasPush].transferenciasRecebidas.push(registroDeposito);
+
 }
 
 function transferir(request, response){
@@ -169,20 +186,21 @@ const {numero_conta_origem ,numero_conta_destino, valor, senha_usuario} = reques
         return response.status(403).json({mensagem:'saldo da conta insuficiente!'});
     }
 
-    const registroTransferencia = {
+    const registroTransferencias = {
         data: new Date().toLocaleString(),
         numero_conta_origem,
         numero_conta_destino,
         valor
 
     }
+
     //ao transferir não cria um depósito na conta destino. Verificar bug
     contaOrigemEncontrada.saldo -= valor;
     contaDestinoEncontrada.saldo += valor;
+    //chamando a função para realizar registro
+    registrarDepositoContaDestino(contaDestinoEncontrada.numero,valor);
+    banco.transferencias.push(registroTransferencias);
     
-
-    banco.transferencias.push(registroTransferencia);
-
     response.status(204).json();
 }
 //o parâmetro está sendo chamado pelo intermediário const  {numero_conta} = reques.query;
@@ -194,7 +212,6 @@ function mostrarSaldo (request,response){
 }
 
 function mostrarExtrato (request, response){
-    
     const {numero_conta} = request.query;
     const depositosConta = banco.depositos.filter(function(numeroConta){
         return numeroConta.numero_conta == numero_conta;
@@ -202,10 +219,14 @@ function mostrarExtrato (request, response){
     const saquesConta = banco.saques.filter(function(numeroConta){
         return numeroConta.numero_conta == numero_conta;
     });
-    const transferenciasConta = banco.transferencias.filter(function(numeroConta){
+    const transferenciasContaOrigem = banco.transferencias.filter(function(numeroConta){
         return numeroConta.numero_conta_origem == numero_conta;
     });
-    let extratoTotal = [{depositos: depositosConta},{saques: saquesConta},{transferencias: transferenciasConta}]
+    const transferenciasContaDestino = banco.transferencias.filter(function(numeroConta){
+        return numeroConta.numero_conta_destino == numero_conta;
+    });
+    let transferencias = [{transferenciasEnviadas: transferenciasContaOrigem},{tranferenciasRecebidas: transferenciasContaDestino}]
+    let extratoTotal = [{depositos: depositosConta},{saques: saquesConta},{transferencias}]
     response.status(200).json(extratoTotal);
 }
 module.exports = {
