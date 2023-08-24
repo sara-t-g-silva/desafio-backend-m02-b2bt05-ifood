@@ -51,8 +51,11 @@ Os dados serão persistidos em memória, no objeto existente dentro do arquivo `
     depositos: [
         // array de depósitos
     ],
-    transferencias: [
+    transferencias: [{
         // array de transferências
+        transferenciasEnviadas: [],
+        transferenciasRecebidas: []
+    }
     ],
 }
 ```
