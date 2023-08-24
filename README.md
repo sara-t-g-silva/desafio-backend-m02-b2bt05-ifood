@@ -4,10 +4,12 @@
 ![Alt text](img/image-1.png)
 
  ## Banco  RestFul API 
+![GitHub language count](https://img.shields.io/github/languages/count/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood)
+![GitHub repo size](https://img.shields.io/github/repo-size/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood)
+![GitHub last commit](https://badgen.net/github/last-commit/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood)
 
-[![Languages used](https://img.shields.io/github/languages/count/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood?style=flat-square)]
-[![Repository size](https://img.shields.io/github/repo-size/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood?style=flat-square)]
-[![Last commit](https://img.shields.io/github/last-commit/sara-t-g-silva/desafio-backend-m02-b2bt05-ifood?style=flat-square)]
+
+
 
 ### 📖Sobre:
 
@@ -212,7 +214,7 @@ Esse endpoint cria uma conta bancária.
 ``` 
  `PUT` `/contas/:numeroConta/usuario`
 ``` 
-Esse endpoint deverá atualizar apenas os dados do usuário de uma conta bancária.
+Esse endpoint atualiza apenas os dados do usuário de uma conta bancária.
 
 -   ***Requisição*** - O corpo (body) deverá possuir um objeto com todas as seguintes propriedades (respeitando estes nomes):
 
